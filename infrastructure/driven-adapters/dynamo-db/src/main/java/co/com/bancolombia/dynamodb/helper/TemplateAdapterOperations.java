@@ -3,16 +3,14 @@ package co.com.bancolombia.dynamodb.helper;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapperConfig;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
-import com.amazonaws.services.dynamodbv2.datamodeling.PaginatedScanList;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
 import com.amazonaws.services.dynamodbv2.datamodeling.PaginatedQueryList;
 import com.amazonaws.services.dynamodbv2.model.CreateTableRequest;
 import com.amazonaws.services.dynamodbv2.model.ProvisionedThroughput;
 import com.amazonaws.services.dynamodbv2.util.TableUtils;
 import org.reactivecommons.utils.ObjectMapper;
-import java.lang.reflect.ParameterizedType;
 
+import java.lang.reflect.ParameterizedType;
 import java.util.List;
 import java.util.function.Function;
 
@@ -57,16 +55,6 @@ public abstract class TemplateAdapterOperations<E, K, V> {
         return result.stream().map(this::toModel).toList();
     }
 
-    /**
-     * @implNote  Bancolombia does not suggest the Scan function for DynamoDB tables due to the low performance resulting from the design of the database engine (Key value). Optimize the query using Query, GetItem or BatchGetItem functions, and if necessary, consider the Single-Table Design pattern for DynamoDB.
-     * @return List<E>
-     * @deprecated 
-     */
-    @Deprecated(forRemoval = true)
-    public List<E> scan() {
-        PaginatedScanList<V> result = dynamoDBMapper.scan(dataClass, new DynamoDBScanExpression());
-        return result.stream().map(this::toModel).toList();
-    }
 
     protected V toEntity(E model) {
         return mapper.map(model, dataClass);
