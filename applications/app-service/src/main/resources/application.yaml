@@ -24,7 +24,5 @@ management:
       probes:
         enabled: true
 aws:
-
   dynamodb:
     endpoint: "https://dynamodb.us-east-2.amazonaws.com"
-    threads: "10"

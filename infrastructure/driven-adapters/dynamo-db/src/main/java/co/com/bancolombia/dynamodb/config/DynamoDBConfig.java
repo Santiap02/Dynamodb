@@ -20,6 +20,4 @@ public class DynamoDBConfig {
                 .build();
     }
 
-
-
 }

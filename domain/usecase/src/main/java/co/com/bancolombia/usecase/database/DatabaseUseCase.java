@@ -16,8 +16,8 @@ public class DatabaseUseCase {
         return userRepository.save(user);
     }
 
-    public User getById(Long id){
-        return userRepository.getById(id);
+    public User findById(Long id){
+        return userRepository.findById(id);
     }
 
     public List<User> findByType(String type){

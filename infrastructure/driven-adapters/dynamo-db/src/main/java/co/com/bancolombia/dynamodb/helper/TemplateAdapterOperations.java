@@ -42,7 +42,7 @@ public abstract class TemplateAdapterOperations<E, K, V> {
         return toModel(entity);
     }
 
-    public E getById(K id) {
+    public E findById(K id) {
         return toModel(dynamoDBMapper.load(dataClass, id));
     }
 

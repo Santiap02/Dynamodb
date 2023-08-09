@@ -28,7 +28,7 @@ public class ApiRest {
 
     @GetMapping(path = "/{id}")
     public User findById(@PathVariable("id") Long id) {
-        return databaseUseCase.getById(id);
+        return databaseUseCase.findById(id);
     }
 
     @GetMapping(path = "/")
